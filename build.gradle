@@ -1,0 +1,38 @@
+apply plugin: "groovy"
+apply plugin: "application"
+mainClassName = "test"
+
+repositories {
+	mavenLocal()
+    mavenCentral()
+	maven {
+		url "http://repo.akka.io/releases"
+	}
+	maven{
+        url "http://repo.spray.cc"
+	}
+	maven{
+		url "https://repository.cloudera.com/artifactory/cloudera-repos"
+	}
+}
+
+
+dependencies {
+	compile ('org.spark-project:spark-core_2.9.3:0.7.3'){
+		exclude group: 'org.apache.hadoop', module: 'hadoop-core'
+	}
+	compile ('org.apache.hadoop:hadoop-core:2.0.0-mr1-cdh4.3.0')
+	compile ('org.apache.hadoop:hadoop-common:2.0.0-cdh4.3.0')
+	compile ('org.apache.hadoop:hadoop-hdfs:2.0.0-cdh4.3.0')
+	compile ('org.apache.hadoop:hadoop-annotations:2.0.0-cdh4.3.0')
+	compile ('org.apache.hadoop:hadoop-auth:2.0.0-cdh4.3.0')
+	compile ('org.apache.hadoop:hadoop-client:2.0.0-mr1-cdh4.3.0')
+
+	compile("commons-daemon:commons-daemon:1.0.5") {
+		force = true
+	}
+}
+
+run{
+    standardInput = System.in
+}
