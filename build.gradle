@@ -1,10 +1,15 @@
 apply plugin: "groovy"
 apply plugin: "application"
-mainClassName = "test"
+mainClassName = "Test"
+
+task libs(type: Sync) {
+  from configurations.compile
+  into "libs"
+}
+
 
 repositories {
-	mavenLocal()
-    mavenCentral()
+
 	maven {
 		url "http://repo.akka.io/releases"
 	}
@@ -18,21 +23,18 @@ repositories {
 
 
 dependencies {
-	compile ('org.spark-project:spark-core_2.9.3:0.7.3'){
-		exclude group: 'org.apache.hadoop', module: 'hadoop-core'
-	}
-	compile ('org.apache.hadoop:hadoop-core:2.0.0-mr1-cdh4.3.0')
-	compile ('org.apache.hadoop:hadoop-common:2.0.0-cdh4.3.0')
-	compile ('org.apache.hadoop:hadoop-hdfs:2.0.0-cdh4.3.0')
-	compile ('org.apache.hadoop:hadoop-annotations:2.0.0-cdh4.3.0')
-	compile ('org.apache.hadoop:hadoop-auth:2.0.0-cdh4.3.0')
-	compile ('org.apache.hadoop:hadoop-client:2.0.0-mr1-cdh4.3.0')
+    compile (project(':groovy-spark'))
+	compile files("${rootProject.projectDir}/target/libs/groovy-all-2.2.0-SNAPSHOT.jar")
+	compile('net.sourceforge.jtds:jtds:1.2.4')
+	compile('joda-time:joda-time:2.1')
+    compile 'com.xlson.groovycsv:groovycsv:1.0'
+	
 
-	compile("commons-daemon:commons-daemon:1.0.5") {
-		force = true
-	}
 }
 
-run{
-    standardInput = System.in
+run() {
+	//	 environment("SPARK_LOCAL_IP", "192.168.250.27")
+	environment("SPARK_HOME", "/home/appadmin/spark")
+	environment("SPARK_MEM", "4g")
+	standardInput = System.in
 }
