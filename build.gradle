@@ -33,6 +33,7 @@ dependencies {
 }
 
 run() {
+	dependsOn << build
 	dependsOn << libs
 	//	 environment("SPARK_LOCAL_IP", "192.168.250.27")
 	environment("SPARK_HOME", "/home/appadmin/spark")
