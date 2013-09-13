@@ -6,7 +6,7 @@ import repl.PairF;
 
 
 
-class Test{
+class Example{
 
 
 
@@ -31,7 +31,7 @@ class Test{
 	static void main(String[] args){
 
 		def textFile = sc.textFile("hdfs://namenode.local:8020/test.csv")
-		result = textFile.map(new PairF({ row ->
+		def result = textFile.map(new PairF({ row ->
 			return new Tuple2(row, Arrays.asList([1,2,3]))
 
         }))

@@ -1,6 +1,6 @@
 apply plugin: "groovy"
 apply plugin: "application"
-mainClassName = "Test"
+mainClassName = "Example"
 
 task libs(type: Sync) {
   from configurations.compile
@@ -33,6 +33,7 @@ dependencies {
 }
 
 run() {
+	dependsOn << libs
 	//	 environment("SPARK_LOCAL_IP", "192.168.250.27")
 	environment("SPARK_HOME", "/home/appadmin/spark")
 	environment("SPARK_MEM", "4g")
