@@ -1,4 +1,3 @@
-
 # Groovy Spark
 
   Groovy repl support 
@@ -7,7 +6,7 @@
 
 
  write a normal spark program in groovy 
-
+```groovy
 	static void main(String[] args){
 
 		def textFile = sc.textFile("hdfs://namenode.local:8020/kmeans_data.txt")
@@ -21,6 +20,7 @@
 		//insert a call to repl() to drop into a groovy shell with context (access to all in scope variables)
 		repl()
       }
+ ```
 
 	  
 When execution reaches the repl() call you get a groovy prompt where can explore variables and launch new spark jobs
@@ -29,7 +29,7 @@ When execution reaches the repl() call you get a groovy prompt where can explore
 	 			 import scala.Tuple2;
 				 import repl.F;
 				 import repl.PairF;
-				 filtered_result = reult.filter(new F({ row ->
+				 filtered_result = result.filter(new F({ row ->
 				     //arbitrary filter function	
 					 return true
 				 }))
@@ -43,7 +43,7 @@ When execution reaches the repl() call you get a groovy prompt where can explore
 
 Groovy-spark currently requires a slightly modified version of groovy. It is hoped that this can be removed someday but for now you can do the following to build groovy-spark
 
-
+```bash
 			 git clone https://github.com/bunions1/groovy-core.git
 			 git checkout spark_shell_support
 			 git submodule init
@@ -55,7 +55,7 @@ Groovy-spark currently requires a slightly modified version of groovy. It is hop
 			 #executes the example
 			 ./gradlew :groovy-spark-example:run			 
 
-
+```
 
 
 			 
