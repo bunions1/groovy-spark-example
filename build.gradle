@@ -28,6 +28,9 @@ dependencies {
 	compile('net.sourceforge.jtds:jtds:1.2.4')
 	compile('joda-time:joda-time:2.1')
     compile 'com.xlson.groovycsv:groovycsv:1.0'
+
+
+	runtime files("/tmp/")
 	
 
 }
@@ -35,8 +38,8 @@ dependencies {
 run() {
 	dependsOn << build
 	dependsOn << libs
-	//	 environment("SPARK_LOCAL_IP", "192.168.250.27")
+	environment("SPARK_LOCAL_IP", "192.168.250.44")
 	environment("SPARK_HOME", "/home/appadmin/spark")
-	environment("SPARK_MEM", "4g")
+	environment("SPARK_MEM", "12g")
 	standardInput = System.in
 }
