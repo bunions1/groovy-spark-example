@@ -1,4 +1,5 @@
 apply plugin: "groovy"
+apply plugin: "java"
 apply plugin: "application"
 mainClassName = "Example"
 
@@ -38,7 +39,7 @@ dependencies {
 run() {
 	dependsOn << build
 	dependsOn << libs
-	environment("SPARK_LOCAL_IP", "192.168.250.44")
+	environment("SPARK_LOCAL_IP", "192.168.250.51")
 	environment("SPARK_HOME", "/home/appadmin/spark")
 	environment("SPARK_MEM", "12g")
 	standardInput = System.in
